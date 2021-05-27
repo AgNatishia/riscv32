@@ -1,0 +1,135 @@
+40000000 <_start>:
+40000000:	00000093          	li	ra,0
+40000004:	00000113          	li	sp,0
+40000008:	00000193          	li	gp,0
+4000000c:	00000213          	li	tp,0
+40000010:	00000293          	li	t0,0
+40000014:	00000313          	li	t1,0
+40000018:	00000393          	li	t2,0
+4000001c:	00000413          	li	s0,0
+40000020:	00000493          	li	s1,0
+40000024:	00000713          	li	a4,0
+40000028:	00000793          	li	a5,0
+
+4000002c <__crt0_neorv32_trap_init>:
+4000002c:	00000597          	auipc	a1,0x0
+40000030:	10458593          	addi	a1,a1,260 # 40000130 <__crt0_dummy_trap_handler>
+40000034:	30559073          	csrw	mtvec,a1
+40000038:	00000813          	li	a6,0
+4000003c:	00000893          	li	a7,0
+40000040:	00000913          	li	s2,0
+40000044:	00000993          	li	s3,0
+40000048:	00000a13          	li	s4,0
+4000004c:	00000a93          	li	s5,0
+40000050:	00000b13          	li	s6,0
+40000054:	00000b93          	li	s7,0
+40000058:	00000c13          	li	s8,0
+4000005c:	00000c93          	li	s9,0
+40000060:	00000d13          	li	s10,0
+40000064:	00000d93          	li	s11,0
+40000068:	00000e13          	li	t3,0
+4000006c:	00000e93          	li	t4,0
+40000070:	00000f13          	li	t5,0
+40000074:	00000f93          	li	t6,0
+
+40000078 <__crt0_status_init>:
+40000078:	00002537          	lui	a0,0x2
+4000007c:	80050513          	addi	a0,a0,-2048 # 1800 <_start-0x3fffe800>
+40000080:	30051073          	csrw	mstatus,a0
+40000084:	30401073          	csrw	mie,zero
+
+40000088 <__crt0_pointer_init>:
+40000088:	00010117          	auipc	sp,0x10
+4000008c:	f7410113          	addi	sp,sp,-140 # 4000fffc <__crt0_stack_begin>
+40000090:	ffc17113          	andi	sp,sp,-4
+40000094:	00010413          	mv	s0,sp
+40000098:	00001197          	auipc	gp,0x1
+4000009c:	90818193          	addi	gp,gp,-1784 # 400009a0 <__global_pointer$>
+
+400000a0 <__crt0_clear_bss>:
+400000a0:	00000597          	auipc	a1,0x0
+400000a4:	10058593          	addi	a1,a1,256 # 400001a0 <__crt0_copy_data_src_begin>
+400000a8:	00000617          	auipc	a2,0x0
+400000ac:	0f860613          	addi	a2,a2,248 # 400001a0 <__crt0_copy_data_src_begin>
+
+400000b0 <__crt0_clear_bss_loop>:
+400000b0:	00c5d863          	bge	a1,a2,400000c0 <__crt0_clear_bss_loop_end>
+400000b4:	00058023          	sb	zero,0(a1)
+400000b8:	00158593          	addi	a1,a1,1
+400000bc:	ff5ff06f          	j	400000b0 <__crt0_clear_bss_loop>
+
+400000c0 <__crt0_clear_bss_loop_end>:
+400000c0:	00000597          	auipc	a1,0x0
+400000c4:	0e058593          	addi	a1,a1,224 # 400001a0 <__crt0_copy_data_src_begin>
+400000c8:	00000617          	auipc	a2,0x0
+400000cc:	0d860613          	addi	a2,a2,216 # 400001a0 <__crt0_copy_data_src_begin>
+400000d0:	00000697          	auipc	a3,0x0
+400000d4:	0d068693          	addi	a3,a3,208 # 400001a0 <__crt0_copy_data_src_begin>
+
+400000d8 <__crt0_copy_data_loop>:
+400000d8:	00d65c63          	bge	a2,a3,400000f0 <__crt0_copy_data_loop_end>
+400000dc:	00058703          	lb	a4,0(a1)
+400000e0:	00e60023          	sb	a4,0(a2)
+400000e4:	00158593          	addi	a1,a1,1
+400000e8:	00160613          	addi	a2,a2,1
+400000ec:	fedff06f          	j	400000d8 <__crt0_copy_data_loop>
+
+400000f0 <__crt0_copy_data_loop_end>:
+400000f0:	00000513          	li	a0,0
+400000f4:	00000593          	li	a1,0
+400000f8:	b0001073          	csrw	mcycle,zero
+400000fc:	b8001073          	csrw	mcycleh,zero
+40000100:	b0201073          	csrw	minstret,zero
+40000104:	b8201073          	csrw	minstreth,zero
+40000108:	30605073          	csrwi	mcounteren,0
+4000010c:	fff00613          	li	a2,-1
+40000110:	32061073          	csrw	mcountinhibit,a2
+40000114:	80000637          	lui	a2,0x80000
+40000118:	34261073          	csrw	mcause,a2
+4000011c:	060000ef          	jal	ra,4000017c <main>
+
+40000120 <__crt0_this_is_the_end>:
+40000120:	30047073          	csrci	mstatus,8
+40000124:	00000013          	nop
+40000128:	10500073          	wfi
+
+4000012c <__crt0_this_is_the_end_my_friend>:
+4000012c:	0000006f          	j	4000012c <__crt0_this_is_the_end_my_friend>
+
+40000130 <__crt0_dummy_trap_handler>:
+40000130:	ff810113          	addi	sp,sp,-8
+40000134:	00812023          	sw	s0,0(sp)
+40000138:	00912223          	sw	s1,4(sp)
+4000013c:	34202473          	csrr	s0,mcause
+40000140:	02044663          	bltz	s0,4000016c <__crt0_dummy_trap_handler_irq>
+40000144:	34102473          	csrr	s0,mepc
+
+40000148 <__crt0_dummy_trap_handler_exc_c_check>:
+40000148:	00041483          	lh	s1,0(s0)
+4000014c:	0034f493          	andi	s1,s1,3
+40000150:	00240413          	addi	s0,s0,2
+40000154:	34141073          	csrw	mepc,s0
+40000158:	00300413          	li	s0,3
+4000015c:	00941863          	bne	s0,s1,4000016c <__crt0_dummy_trap_handler_irq>
+
+40000160 <__crt0_dummy_trap_handler_exc_uncrompressed>:
+40000160:	34102473          	csrr	s0,mepc
+40000164:	00240413          	addi	s0,s0,2
+40000168:	34141073          	csrw	mepc,s0
+
+4000016c <__crt0_dummy_trap_handler_irq>:
+4000016c:	00012403          	lw	s0,0(sp)
+40000170:	00412483          	lw	s1,4(sp)
+40000174:	00810113          	addi	sp,sp,8
+40000178:	30200073          	mret
+
+4000017c <main>:
+4000017c:	400207b7          	lui	a5,0x40020
+40000180:	0007a223          	sw	zero,4(a5) # 40020004 <__crt0_stack_begin+0x10008>
+40000184:	40020737          	lui	a4,0x40020
+40000188:	01000693          	li	a3,16
+4000018c:	00000793          	li	a5,0
+40000190:	00f72023          	sw	a5,0(a4) # 40020000 <__crt0_stack_begin+0x10004>
+40000194:	00178793          	addi	a5,a5,1
+40000198:	fed79ce3          	bne	a5,a3,40000190 <main+0x14>
+4000019c:	ff1ff06f          	j	4000018c <main+0x10>
