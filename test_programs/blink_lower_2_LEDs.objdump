@@ -1,3 +1,9 @@
+
+main.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
 40000000 <_start>:
 40000000:	00000093          	li	ra,0
 40000004:	00000113          	li	sp,0
@@ -44,13 +50,13 @@
 40000090:	ffc17113          	andi	sp,sp,-4
 40000094:	00010413          	mv	s0,sp
 40000098:	00001197          	auipc	gp,0x1
-4000009c:	90818193          	addi	gp,gp,-1784 # 400009a0 <__global_pointer$>
+4000009c:	90c18193          	addi	gp,gp,-1780 # 400009a4 <__global_pointer$>
 
 400000a0 <__crt0_clear_bss>:
 400000a0:	00000597          	auipc	a1,0x0
-400000a4:	10058593          	addi	a1,a1,256 # 400001a0 <__crt0_copy_data_src_begin>
+400000a4:	10458593          	addi	a1,a1,260 # 400001a4 <__crt0_copy_data_src_begin>
 400000a8:	00000617          	auipc	a2,0x0
-400000ac:	0f860613          	addi	a2,a2,248 # 400001a0 <__crt0_copy_data_src_begin>
+400000ac:	0fc60613          	addi	a2,a2,252 # 400001a4 <__crt0_copy_data_src_begin>
 
 400000b0 <__crt0_clear_bss_loop>:
 400000b0:	00c5d863          	bge	a1,a2,400000c0 <__crt0_clear_bss_loop_end>
@@ -60,11 +66,11 @@
 
 400000c0 <__crt0_clear_bss_loop_end>:
 400000c0:	00000597          	auipc	a1,0x0
-400000c4:	0e058593          	addi	a1,a1,224 # 400001a0 <__crt0_copy_data_src_begin>
+400000c4:	0e458593          	addi	a1,a1,228 # 400001a4 <__crt0_copy_data_src_begin>
 400000c8:	00000617          	auipc	a2,0x0
-400000cc:	0d860613          	addi	a2,a2,216 # 400001a0 <__crt0_copy_data_src_begin>
+400000cc:	0dc60613          	addi	a2,a2,220 # 400001a4 <__crt0_copy_data_src_begin>
 400000d0:	00000697          	auipc	a3,0x0
-400000d4:	0d068693          	addi	a3,a3,208 # 400001a0 <__crt0_copy_data_src_begin>
+400000d4:	0d468693          	addi	a3,a3,212 # 400001a4 <__crt0_copy_data_src_begin>
 
 400000d8 <__crt0_copy_data_loop>:
 400000d8:	00d65c63          	bge	a2,a3,400000f0 <__crt0_copy_data_loop_end>
@@ -126,10 +132,41 @@
 4000017c <main>:
 4000017c:	400207b7          	lui	a5,0x40020
 40000180:	0007a223          	sw	zero,4(a5) # 40020004 <__crt0_stack_begin+0x10008>
-40000184:	40020737          	lui	a4,0x40020
-40000188:	01000693          	li	a3,16
-4000018c:	00000793          	li	a5,0
-40000190:	00f72023          	sw	a5,0(a4) # 40020000 <__crt0_stack_begin+0x10004>
-40000194:	00178793          	addi	a5,a5,1
-40000198:	fed79ce3          	bne	a5,a3,40000190 <main+0x14>
-4000019c:	ff1ff06f          	j	4000018c <main+0x10>
+40000184:	00100613          	li	a2,1
+40000188:	00200693          	li	a3,2
+4000018c:	00300713          	li	a4,3
+40000190:	0007a023          	sw	zero,0(a5)
+40000194:	00c7a023          	sw	a2,0(a5)
+40000198:	00d7a023          	sw	a3,0(a5)
+4000019c:	00e7a023          	sw	a4,0(a5)
+400001a0:	ff1ff06f          	j	40000190 <main+0x14>
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	3a434347          	fmsub.d	ft6,ft6,ft4,ft7,rmm
+   4:	2820                	fld	fs0,80(s0)
+   6:	29554e47          	fmsub.s	ft8,fa0,fs5,ft5,rmm
+   a:	3120                	fld	fs0,96(a0)
+   c:	2e30                	fld	fa2,88(a2)
+   e:	2e32                	fld	ft8,264(sp)
+  10:	0030                	addi	a2,sp,8
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	1f41                	addi	t5,t5,-16
+   2:	0000                	unimp
+   4:	7200                	flw	fs0,32(a2)
+   6:	7369                	lui	t1,0xffffa
+   8:	01007663          	bgeu	zero,a6,14 <_start-0x3fffffec>
+   c:	0015                	c.nop	5
+   e:	0000                	unimp
+  10:	1004                	addi	s1,sp,32
+  12:	7205                	lui	tp,0xfffe1
+  14:	3376                	fld	ft6,376(sp)
+  16:	6932                	flw	fs2,12(sp)
+  18:	7032                	flw	ft0,44(sp)
+  1a:	0030                	addi	a2,sp,8
+  1c:	0108                	addi	a0,sp,128
+  1e:	0b0a                	slli	s6,s6,0x2

@@ -15,5 +15,4 @@ run 100 ns
 add_force {/rv32i_overlay_sim_wrapper/rv32i_overlay_sim_i/neo_reset} -radix hex {1 0ns}
 run 100 ns
 
-
 run 50000 ns
