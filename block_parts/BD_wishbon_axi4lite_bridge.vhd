@@ -39,7 +39,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 library neorv32;
-use neorv32.neorv32_package.all;
+use neorv32.BD_neorv32_package.all;
 
 entity BD_wishbon_axi4lite_bridge is
   port (
