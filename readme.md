@@ -53,3 +53,7 @@ Once run you will have a range of generated files
 Currently there is bug with simulation, this section will be updated once it is sorted; in the meantime skip this section.
 
 ## Running your program on the PYQN board
+
+Running programs on the PYNQ board is handled by the run_program notebook, (board_files/run_program.ipynb), it needs to be copied to and run on the PYNQ board.
+Upon openning the notebook, edit overlay_path and program_name so that they point to your overlay (for Generating Overlay) and your program's ,bin (from Compiling a program) respectively.
+Then run each of the cells, the cell starting with # Neo kickoff can be rerun to restart your program without having to reload the .bin into the overlay's BRAM
