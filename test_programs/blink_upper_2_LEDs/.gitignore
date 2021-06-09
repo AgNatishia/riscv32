@@ -1,0 +1,3 @@
+main.*
+*.o
+neorv32_exe.bin
